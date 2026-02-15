@@ -14,6 +14,7 @@ class VideoModelRepository:
         height: int,
         duration: float,
         codec: str,
+        fps: float,
         size_in_bytes: int,
     ) -> VideoModel:
         new_entry = VideoModel(
@@ -23,6 +24,7 @@ class VideoModelRepository:
             height=height,
             duration=duration,
             codec=codec,
+            fps=fps,
             size_in_bytes=size_in_bytes,
         )
         self.db.add(new_entry)

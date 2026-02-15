@@ -15,6 +15,7 @@ class VideoModel(Base):
     height: Mapped[int] = mapped_column(Integer, nullable=False)
     duration: Mapped[float] = mapped_column(Integer, nullable=False)
     codec: Mapped[str] = mapped_column(String, nullable=False)
+    fps: Mapped[float] = mapped_column(Integer, nullable=False)
     size_in_bytes: Mapped[int] = mapped_column(Integer, nullable=False)
 
     def __repr__(self):

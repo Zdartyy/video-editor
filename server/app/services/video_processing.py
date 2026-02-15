@@ -51,6 +51,7 @@ class VideoProcessingImpl(VideoProcessing):
             height=metadata["height"],
             duration=metadata["duration"],
             codec=metadata["codec"],
+            fps=metadata["fps"],
             size_in_bytes=metadata["size_in_bytes"],
         )
 
