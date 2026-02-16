@@ -8,6 +8,7 @@ class UserModel(Base):
 
     user_id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     username: Mapped[str] = mapped_column(String, unique=True, nullable=False)
+    api_key: Mapped[str] = mapped_column(String, unique=True, nullable=False)
 
     def __repr__(self):
         return f"<User(id={self.user_id}, username='{self.username}')>"
