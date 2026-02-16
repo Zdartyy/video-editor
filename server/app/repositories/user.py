@@ -1,5 +1,6 @@
 from ..models.user import UserModel
 from sqlalchemy.orm import Session
+from sqlalchemy import select
 
 
 class UserModelRepository:
@@ -13,4 +14,5 @@ class UserModelRepository:
         return user
 
     def get_user_by_username(self, username: str) -> UserModel | None:
-        return self.db.query(UserModel).filter(UserModel.username == username).first()
+        statement = select(UserModel).where(UserModel.username == username)
+        return self.db.scalars(statement).first()

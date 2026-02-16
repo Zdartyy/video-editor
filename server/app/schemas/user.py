@@ -1,14 +1,5 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class UserCreateRequest(BaseModel):
-    username: str
-
-
-class UserCreateResponse(BaseModel):
-    user_id: int
-    username: str
-    api_key: str
-
-    class Config:
-        from_attributes = True
+    username: str = Field(..., min_length=3, max_length=20)

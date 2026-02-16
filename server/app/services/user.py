@@ -1,6 +1,7 @@
 from ..interfaces.user import User
 from ..repositories.user import UserModelRepository
 from ..models.user import UserModel
+import secrets
 
 
 class UserImpl(User):
@@ -13,6 +14,8 @@ class UserImpl(User):
         if existing_user:
             raise ValueError(f"Username '{username}' already exists.")
 
-        user = UserModel(username=username)
+        api_key = f"{username}_{secrets.token_urlsafe(16)}"
+
+        user = UserModel(username=username, api_key=api_key)
 
         return self.repository.create_user_model_entry(user)
