@@ -1,5 +1,6 @@
 from sqlalchemy.orm import Session
 from ..models.project import ProjectModel
+from sqlalchemy import select
 
 
 class ProjectModelRepository:
@@ -11,3 +12,11 @@ class ProjectModelRepository:
         self.db.commit()
         self.db.refresh(project)
         return project
+
+    def get_project_by_name_and_owner(
+        self, project_name: str, owner_id: int
+    ) -> ProjectModel | None:
+        statement = select(ProjectModel).where(
+            ProjectModel.project_name == project_name, ProjectModel.owner_id == owner_id
+        )
+        return self.db.scalars(statement).first()
