@@ -16,3 +16,7 @@ class UserModelRepository:
     def get_user_by_username(self, username: str) -> UserModel | None:
         statement = select(UserModel).where(UserModel.username == username)
         return self.db.scalars(statement).first()
+
+    def get_user_by_api_key(self, api_key: str) -> UserModel | None:
+        statement = select(UserModel).where(UserModel.api_key == api_key)
+        return self.db.scalars(statement).first()
