@@ -16,6 +16,7 @@ class MediaModel(Base):
 
     media_id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     media_name: Mapped[str] = mapped_column(String, nullable=False)
+    media_orginal_name: Mapped[str] = mapped_column(String, nullable=False)
     media_type: Mapped[MediaType] = mapped_column(SQLEnum(MediaType), nullable=False)
     project_id: Mapped[int] = mapped_column(
         Integer, ForeignKey("projects.project_id"), nullable=False

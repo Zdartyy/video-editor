@@ -10,6 +10,6 @@ class MediaProcessing(ABC):
         raise NotImplementedError("Subclasses must implement upload_media method")
 
     @abstractmethod
-    async def send_media(self, media_name: str) -> bytes:
+    async def send_media(self, media_id: int) -> bytes:
         """Sends the processed media file back to the client."""
         raise NotImplementedError("Subclasses must implement send_media method")
