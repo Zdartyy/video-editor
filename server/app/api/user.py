@@ -1,23 +1,27 @@
 from fastapi import APIRouter, Depends, HTTPException
+from fastapi import status
 
-from ..schemas.user import UserCreateRequest
+from ..schemas.user import UserRegisterRequest, UserRegisterResponse
 from ..services.user import UserImpl
 from ..providers.user import UserProvider
 
 router = APIRouter(prefix="/user", tags=["user"])
 
 
-@router.post("/register")
+@router.post(
+    "/register",
+    response_model=UserRegisterResponse,
+    status_code=status.HTTP_201_CREATED,
+)
 async def register_user(
-    request: UserCreateRequest,
+    request: UserRegisterRequest,
     user_service: UserImpl = Depends(UserProvider.get_service),
 ):
     try:
         user = await user_service.register_user(request.username)
-        return {
-            "user_id": user.user_id,
-            "username": user.username,
-            "api_key": user.api_key,
-        }
+        return UserRegisterResponse(
+            username=user.username,
+            api_key=user.api_key,
+        )
     except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e))
