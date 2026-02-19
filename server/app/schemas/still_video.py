@@ -1,5 +1,11 @@
 from pydantic import BaseModel, Field
 
 
-class UserCreateRequest(BaseModel):
-    username: str = Field(..., min_length=3, max_length=20)
+class StillVideoRequest(BaseModel):
+    still_id: int = Field(..., gt=0)
+    audio_id: int = Field(..., gt=0)
+
+
+class StillVideoResult(BaseModel):
+    video_path: str
+    video_name: str

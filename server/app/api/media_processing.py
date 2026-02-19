@@ -28,11 +28,13 @@ async def download_media(
 
     media_bytes = await media_processing.send_media(media_name)
 
-    # Encode filename for non-ASCII characters using RFC 5987
+    # Encode filename for non-ASCII resolves problem of polish chars
     encoded_filename = quote(media_name)
-    
+
     return Response(
         content=media_bytes,
         media_type="application/octet-stream",
-        headers={"Content-Disposition": f"attachment; filename*=UTF-8''{encoded_filename}"},
+        headers={
+            "Content-Disposition": f"attachment; filename*=UTF-8''{encoded_filename}"
+        },
     )
