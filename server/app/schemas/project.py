@@ -1,4 +1,5 @@
 from pydantic import BaseModel, Field
+from datetime import datetime
 
 
 class ProjectCreateRequest(BaseModel):
@@ -8,3 +9,4 @@ class ProjectCreateRequest(BaseModel):
 class ProjectCreateResponse(BaseModel):
     project_id: int
     project_name: str
+    created_at: datetime
