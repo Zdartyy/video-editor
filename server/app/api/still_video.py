@@ -18,7 +18,9 @@ async def combine_still_with_audio(
             request.still_id, request.audio_id
         )
         return FileResponse(
-            result.video_path, media_type="video/mp4", filename=result.video_name
+            result.video_path,
+            media_type="video/mp4",
+            filename=result.video_name,
         )
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
