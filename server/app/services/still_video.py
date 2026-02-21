@@ -35,7 +35,7 @@ class StillVideoImpl(StillVideo):
 
         still_path = str(self.SERVER_ROOT / self.UPLOAD_DIR / still.media_name)
         audio_path = str(self.SERVER_ROOT / self.UPLOAD_DIR / audio.media_name)
-        output_filename = f"{still.media_orginal_name.split('.')[0]}_with_{audio.media_orginal_name.split('.')[0]}.mp4"
+        output_filename = f"{still.media_original_name.split('.')[0]}_with_{audio.media_original_name.split('.')[0]}.mp4"
         output_path = self.UPLOAD_DIR / output_filename
 
         try:

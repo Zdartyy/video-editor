@@ -36,7 +36,7 @@ async def download_media(
         )
 
     # Encode filename for non-ASCII resolves problem of polish chars
-    encoded_filename = quote(media.media_orginal_name)
+    encoded_filename = quote(media.media_original_name)
 
     return Response(
         content=media_bytes,

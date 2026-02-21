@@ -47,7 +47,7 @@ class MediaProcessingImpl(MediaProcessing):
 
         media_model = MediaModel(
             media_name=unique_filename,
-            media_orginal_name=file.filename,
+            media_original_name=file.filename,
             media_type=metadata.get("media_type"),
             project_id=1,  # TODO: Replace 1 with the actual project_id
             width=metadata.get("width"),
