@@ -28,4 +28,5 @@ async def create_project(
     return ProjectCreateResponse(
         project_id=project.project_id,
         project_name=project.project_name,
+        created_at=project.created_at,
     )

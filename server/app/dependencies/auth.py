@@ -4,6 +4,7 @@ from app.error_handler.error_handler import UnauthorizedError
 from ..models.user import UserModel
 from ..repositories.user import UserModelRepository
 from ..providers.user import UserProvider
+from fastapi import status
 
 
 async def get_current_user(

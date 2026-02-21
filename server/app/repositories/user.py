@@ -1,6 +1,7 @@
 from ..models.user import UserModel
 from sqlalchemy.orm import Session
 from sqlalchemy import select
+import hashlib
 
 
 class UserModelRepository:
@@ -18,5 +19,8 @@ class UserModelRepository:
         return self.db.scalars(statement).first()
 
     def get_user_by_api_key(self, api_key: str) -> UserModel | None:
-        statement = select(UserModel).where(UserModel.api_key == api_key)
+
+        hashed_api_key = hashlib.sha256(api_key.encode()).hexdigest()
+        statement = select(UserModel).where(UserModel.api_key == hashed_api_key)
+        
         return self.db.scalars(statement).first()
